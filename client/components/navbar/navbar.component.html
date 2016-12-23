@@ -1,0 +1,31 @@
+<div class="navbar navbar-dark bg-inverse navbar-fixed-top">
+  <div class="container">
+    <a href="/" class="navbar-brand">Slap</a>
+    <ul class="nav navbar-nav">
+      <li *ngFor="let item of menu" class="nav-item" uiSrefActive="active">
+          <a class="nav-link" uiSref="{{item.state}}">{{item.title}}</a>
+      </li>
+      <li [hidden]="!isAdmin" class="nav-item" uiSrefActive="active">
+        <a class="nav-link" uiSref="admin">Admin</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav float-xs-right">
+      <li [hidden]="isLoggedIn" class="nav-item" uiSrefActive="active">
+      	<a class="nav-link" uiSref="signup">Sign up</a>
+      </li>
+      <li [hidden]="isLoggedIn" class="nav-item" uiSrefActive="active">
+      	<a class="nav-link" uiSref="login">Login</a>
+      </li>
+      <li [hidden]="!isLoggedIn" class="nav-item">
+      	<span class="navbar-text">Hello {{ currentUser.name }}</span> 
+      </li>
+      <li [hidden]="!isLoggedIn" class="nav-item" uiSrefActive="active">
+      	<a class="nav-link" uiSref="settings"><span class="fa fa-cog"></span></a>
+      </li>
+      <li [hidden]="!isLoggedIn" class="nav-item">
+      	<a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
