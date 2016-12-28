@@ -3,7 +3,7 @@
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) on client side.
 
 ## Development server
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. Server will be running on port 9000 connected to client using proxy service. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. Server will be running on `http://localhost:9000/` connected to client using proxy service. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -11,7 +11,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the client. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build. Then run `node server` to start running the project with `NODE_ENV=production` for production build. 
+Run `ng build` to build the client. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build. Then run `node server` to start running the project with `NODE_ENV=production` for production build. By default app will running on port `8080`.
 
 ## Running unit tests on server
 
