@@ -1,5 +1,42 @@
 <div class="container">
-	<p>
-	  signup works!
-	</p>
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Sign Up</h1>
+		</div>
+		<div class="col-sm-7">
+			<form class="form" name="form" (ngSubmit)="register(form)" novalidate #signupForm="ngForm">
+				<div class="form-group row" 
+					[class.has-success]="name.valid && submitted" 
+					[class.has-danger]="!name.valid && submitted">
+					<label class="col-sm-3 col-form-label" for="name">Name</label>
+					<div class="col-sm-9">
+						<input name="name" type="text" class="form-control" required [(ngModel)]="user.name" #name="ngModel">	
+						<small class="form-control-feedback" [hidden]="name.valid || (name.pristine && !signupForm.submitted)"></small>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label" for="email">Email</label>
+					<div class="col-sm-9">
+						<input name="email" type="email" class="form-control" required [(ngModel)]="user.email" #email="ngModel">	
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label" for="password">Password</label>
+					<div class="col-sm-9">
+						<input name="password" type="password" class="form-control" minlength="8" maxlength="15" [(ngModel)]="user.password" #password="ngModel">	
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label" for="cpassword">Confirm Password</label>
+					<div class="col-sm-9">
+						<input name="cpassword" type="password" class="form-control" required [(ngModel)]="user.cpassword" #cpassword="ngModel">	
+					</div>
+				</div>
+				<div class="form-group row text-xs-center">
+					<button class="btn btn-outline-danger" type="submit" [disabled]="!signupForm.form.valid">Register</button>
+					<a class="btn btn-outline-primary" uiSref="login">Login</a>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

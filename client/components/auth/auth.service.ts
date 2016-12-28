@@ -100,7 +100,7 @@ export class AuthService {
    * @param  {Function} callback - optional, function(error, user)
    * @return {Promise}
    */
-  createUser(user, callback) {
+  createUser(user, callback?: any) {
     return this._UserService.create(user).toPromise().then(data => {
       localStorage.setItem('id_token', data.token);
       return this._UserService.get().toPromise();
