@@ -25,7 +25,7 @@ require('./routes').default(app);
 
 // Start server
 function startServer() {
-  app.slapApp = server.listen(config.port, config.ip, function() {
+  app.ng2MeanApp = server.listen(config.port, config.ip, function() {
     console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
   });
 }
