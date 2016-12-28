@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config proxy.conf.json && nodemon server",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -81,6 +81,7 @@
     "karma-remap-istanbul": "^0.2.1",
     "lazypipe": "^1.0.1",
     "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
     "protractor": "4.0.9",
     "proxyquire": "^1.7.10",
     "run-sequence": "^1.2.2",
