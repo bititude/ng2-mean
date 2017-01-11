@@ -1,3 +1,6 @@
 .navbar-dark .navbar-text {
   color: #999;
 }
+.pointer {
+	cursor: pointer;
+}

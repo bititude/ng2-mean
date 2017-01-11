@@ -5,6 +5,7 @@ import { UserService } from './user.service';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
 import { safeCb, extractData } from '../util';
 import { userRoles } from '../../app/app.constants';
 
@@ -106,10 +107,10 @@ export class AuthService {
       return this._UserService.get().toPromise();
     }).then(_user => {
       this.currentUser = _user;
-      return safeCb(callback)(null, _user);
+      return safeCb(callback)(null, _user) ? safeCb(callback)(null, _user) : Promise.resolve(_user);
     }).catch(err => {
       this.logout();
-      return safeCb(callback)(err);
+      return safeCb(callback)(err) ? safeCb(callback)(err) : Promise.reject(err);
     });
   }
 
@@ -121,9 +122,10 @@ export class AuthService {
    * @param  {Function} [callback] - function(error, user)
    * @return {Promise}
    */
-  changePassword(oldPassword, newPassword, callback) {
-    return this._UserService.changePassword({ id: this.currentUser._id }, oldPassword, newPassword)
-    .toPromise().then(() => safeCb(callback)(null)).catch(err => safeCb(callback)(err));
+  changePassword(oldPassword, newPassword, callback?: any) {
+    return this._UserService.changePassword({ id: this.currentUser._id }, oldPassword, newPassword).toPromise()
+    .then(() => safeCb(callback)(null) ? safeCb(callback)(null) : Promise.resolve())
+    .catch(err => safeCb(callback)(err) ? safeCb(callback)(err) : Promise.reject(err));
   }
 
   /**
@@ -154,6 +156,12 @@ export class AuthService {
     let is = this.currentUser.hasOwnProperty('role');
     safeCb(callback)(is);
     return Promise.resolve(is);
+  }
+
+  hasRole(role, callback?:any) {
+    var has = this.currentUser.hasOwnProperty('role') ? AuthService.hasRole(this.currentUser.role, role) : false;
+    safeCb(callback)(has);
+    return Promise.resolve(has);
   }
 
   /**

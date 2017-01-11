@@ -11,4 +11,4 @@ import { NavbarComponent } from './navbar/navbar.component';
   declarations: [NavbarComponent],
   exports: [NavbarComponent]
 })
-export class DirectivesModule {};
+export class ComponentsModule {};

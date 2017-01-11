@@ -1,5 +1,44 @@
 <div class="container">
-	<p>
-	  settings works!
-	</p>
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Change Password</h1>
+		</div>
+		<div class="col-sm-8">
+			<form class="form" novalidate #changePasswordForm="ngForm" (ngSubmit)="changePassword(changePasswordForm)">
+				<div class="form-group row" 
+					[class.has-success]="oldPassword.valid && submitted" 
+					[class.has-danger]="!oldPassword.valid && submitted">
+					<label for="oldPassword" class="col-sm-3 col-form-label">Current Password</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="oldPassword" [(ngModel)]="user.oldPassword" #oldPassword="ngModel" required mongooseError>
+						<small class="form-control-feedback" [hidden]="!((oldPassword.errors && oldPassword.errors.required) && (oldPassword.dirty || submitted))">Please enter you current password.</small>
+						<small class="form-control-feedback" [hidden]="!((oldPassword.errors && oldPassword.errors.mongoose) && (oldPassword.dirty || submitted))">Password you entered is incorrect.</small>
+					</div>
+				</div>
+				<div class="form-group row" 
+					[class.has-success]="newPassword.valid && submitted" 
+					[class.has-danger]="!newPassword.valid && submitted">
+					<label for="newPassword" class="col-sm-3 col-form-label">New Password</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="newPassword" [(ngModel)]="user.newPassword" #newPassword="ngModel" required minlength="8" maxlength="15">
+						<small class="form-control-feedback" [hidden]="newPassword.valid || (newPassword.pristine && !submitted)">Password must be between 8 and 15 characters.</small>
+					</div>
+				</div>
+				<div class="form-group row" 
+					[class.has-success]="cpassword.valid && submitted" 
+					[class.has-danger]="!cpassword.valid && submitted">
+					<label for="cpassword" class="col-sm-3 col-form-label">Confirm Password</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="cpassword" [(ngModel)]="user.cpassword" #cpassword="ngModel" required matchControl="newPassword">
+						<small class="form-control-feedback" [hidden]="!((cpassword.errors && cpassword.errors.required) && (cpassword.dirty || submitted))">Please confirm your password.</small>
+						<small class="form-control-feedback" [hidden]="!((cpassword.errors && cpassword.errors.match) && (cpassword.dirty || submitted))">Passwords must match.</small>
+					</div>
+				</div>
+				<p class="text-xs-center text-success" *ngIf="message">{{ message }}</p>
+				<div class="form-group row text-xs-center">
+					<button class="btn btn-outline-danger" type="submit" [disabled]="!changePasswordForm.form.valid">Change Password</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
