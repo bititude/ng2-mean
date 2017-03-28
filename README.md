@@ -1,8 +1,13 @@
 # ng2-mean
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) on client side.
+A boilerplate for developing applications using Angular 2.0, Node.js, Express and MongoDB.This was generated with [angular-cli](https://github.com/angular/angular-cli) on client side.
 
 ## Development server
+
+Use `git clone git@github.com:bititude/ng2-mean.git` to clone the app to your local server. 
+
+Navigate to your project directory and run `npm install`.
+
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. Server will be running on `http://localhost:9000/` connected to client using proxy service. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
